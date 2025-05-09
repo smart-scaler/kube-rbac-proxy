@@ -1,0 +1,20 @@
+scanners:
+  - vuln
+  - license
+  - config
+  - secret
+  - rbac
+  - sbom
+
+scan:
+  skip-dirs:
+    - .git
+    - vendor
+    - .idea
+
+  severity:
+    - CRITICAL
+    - HIGH
+    - MEDIUM
+
+  ignoreUnfixed: false

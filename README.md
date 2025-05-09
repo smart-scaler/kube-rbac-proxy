@@ -1,5 +1,18 @@
 # kube-rbac-proxy
 
+Pre-requisite
+
+1. Go Vulnerability Management [ https://go.dev/blog/vuln#vulnerability-detection-using-govulncheck ]
+   - Install: `go install golang.org/x/vuln/cmd/govulncheck@latest`
+   - Run scan: `govulncheck ./...`
+
+2. Trivy [ https://trivy.dev/latest ]
+
+3. Pre-commit [ https://pre-commit.com ]
+   - Install pre-commit: `pip install pre-commit`
+   - Install pre-commit hooks: `pre-commit install`
+   - Run scan: `pre-commit run --all-files`
+
 [![Docker Repository on Quay](https://quay.io/repository/brancz/kube-rbac-proxy/status "Docker Repository on Quay")](https://quay.io/repository/brancz/kube-rbac-proxy)
 
 > NOTE: This project is *alpha* stage. Flags, configuration, behavior and design may change significantly in following releases.

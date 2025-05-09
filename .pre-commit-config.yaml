@@ -1,0 +1,31 @@
+exclude: ^vendor/
+
+repos:
+  - repo: local
+    hooks:
+      - id: govulncheck
+        name: Go Vulnerability Check
+        entry: sh -c 'govulncheck -show=verbose $(go list ./... | grep -v /vendor/)'
+        language: system
+        pass_filenames: false
+
+      - id: trivy-scan
+        name: Trivy Vulnerability Scanner
+        entry: trivy
+        language: system
+        types: [file]
+        args: [fs, --exit-code, '1', --debug, .]
+        pass_filenames: false
+        always_run: true
+        verbose: true
+        description: "Scan the project directory for vulnerabilities using Trivy"
+
+      - id: trivy-dockerfile-scan
+        name: Trivy Dockerfile Misconfig Scan
+        description: Scan Dockerfiles for misconfigurations using Trivy.
+        entry: trivy
+        args: [config, Dockerfile, --debug]
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true
